@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de la práctica 02</title>
+    <style>
+        /* Para identificar a los elementos, usen clases */
+        .logo {
+            border: 1px solid green;
+        }
+
+        .logo-sm {
+            height: 50px;
+        }
+
+        .logo-md {
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parentContainer" class="container">
+        <div class="logo-container">
+            <img id="logoJs" class="logo logo-sm"
+                src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg"
+                alt="Logo de JS">
+        </div>
+        <div class="text-container">
+            <p>
+                Hola desde una etiqueta div > p
+            </p>
+        </div>
+        <div class="logo-container">
+            <img id="logoPython" class="logo logo-md"
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Logo de PYTHON">
+        </div>
+        <div class="list-container">
+            <ul>
+                <li>Lista 1</li>
+                <li>Lista 2</li>
+                <li>Lista 3</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    // Al trabajar con JS ya es recomendable usar ID para elementos únicos
+    console.log("Hola desde la etiqueta script")
+    let logoJs = document.getElementById('logoJs');
+    console.log(logoJs)
+    let clases = document.getElementsByClassName('logo');
+    console.log(clases);
+    let liList = document.getElementsByTagName('li');
+    console.log(liList);
+
+    let query1 = document.querySelector('.logo');
+    console.log(query1);
+    
+    let query2 = document.querySelectorAll('.logo, .container, .text-container');
+    console.log(query2);
+
+    // Children
+    let parentContainer = document.getElementById('parentContainer');
+    let parentContainerChildren = parentContainer.childNodes;
+    console.log(parentContainerChildren);
+
+    let  newText = document.createElement('p');
+    let newTextDoc = document.createTextNode("HOLA!");
+    parentContainer.appendChild(newText);
+    newText.appendChild(newTextDoc);
+
+    parentContainer.insertAdjacentHTML("afterend", "<span>Hola desde adjacent</span>")
+
+    console.log(parentContainer.classList)
+    parentContainer.classList.add("class-2")
+    parentContainer.classList.add("class-20")
+    parentContainer.classList.add("class-50")
+
+    parentContainer.classList.add('mi_div_dark', 'mi_div_large', 'mi_div_border');
+
+</script>
+
+</html>
