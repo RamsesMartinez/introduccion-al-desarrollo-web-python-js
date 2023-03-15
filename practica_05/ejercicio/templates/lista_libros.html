@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de libros</title>
+</head>
+<body>
+    <h1>Lista de libros</h1>
+    {% if libros %}
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Género</th>
+            </tr>
+            {% for libro in libros %}
+                <tr>
+                    <td>{{ libro['titulo'] }}</td>
+                    <td>{{ libro['autor'] }}</td>
+                    <td>{{ libro['genero'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No se han ingresado libros.</p>
+    {% endif %}
+    <br>
+    <a href="/">Agregar libro</a>
+</body>
+</html>
