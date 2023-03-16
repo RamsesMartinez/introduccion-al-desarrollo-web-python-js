@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('create_book') }}">Crear libro</a></li>
+            <li><a href="{{ url_for('list_books') }}">Lista de libros</a></li>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
