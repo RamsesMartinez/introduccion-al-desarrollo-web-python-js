@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar sesión</title>
+</head>
+<body>
+    <h1>Iniciar sesión</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}
+            <br>
+            {{ form.username(size=20) }}
+        </p>
+        {% for error in form.username.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        <p>
+            {{ form.password.label }}
+            <br>
+            {{ form.password(size=20) }}
+        </p>
+        {% for error in form.password.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>
