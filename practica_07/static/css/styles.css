@@ -1,0 +1,8 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mdl-layout__content {
+  margin-left: 1em;
+  margin-right: 1em;
+}

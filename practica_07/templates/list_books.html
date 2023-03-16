@@ -3,14 +3,20 @@
 {% block title %}Lista de libros{% endblock %}
 
 {% block content %}
-    <h1>Lista de libros</h1>
-    {% if books %}
-        <ul>
-            {% for book in books %}
-                <li>{{ book.title }} - {{ book.author }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No se han agregado libros todavía.</p>
-    {% endif %}
+<h1>Lista de libros</h1>
+{% if books %}
+<ul class="demo-list-icon mdl-list">
+    {% for book in books %}
+
+    <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">book</i>
+            {{ book.title }} - {{ book.author }}
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se han agregado libros todavía.</p>
+{% endif %}
 {% endblock %}

@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, url_for
 from forms import BookForm
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'una_clave_secreta'
+app.config['SECRET_KEY'] = 'LLAVE_SUPER_SECRETA'
 
 books = []
 
