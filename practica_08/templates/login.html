@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Inicia sesión</h1>
+
+{% if error %}
+<div>{{ error }}</div>
+{% endif %}
+
+<form method="post">
+  {{ form.csrf_token }}
+  <div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="{{form.username.id}}" name="{{form.username.id}}">
+      <label class="mdl-textfield__label" for="{{ form.username.id }}">{{ form.username.label }}</label>
+    </div>
+  </div>
+  <div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="{{form.password.id}}" name="{{form.password.id}}">
+      <label class="mdl-textfield__label" for="{{ form.password.id }}">{{ form.password.label }}</label>
+    </div>
+  </div>
+  <div><!-- Accent-colored raised button -->
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit">
+      {{form.submit.label}}
+    </button>
+  </div>
+
+
+</form>
+
+{% endblock %}

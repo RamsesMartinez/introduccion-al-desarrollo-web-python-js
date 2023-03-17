@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear libro{% endblock %}
+
+{% block content %}
+<h1>Crear libro</h1>
+<form method="post">
+    {{ form.csrf_token }}
+    <div>
+
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="{{form.title.id}}" name="{{form.title.id}}">
+            <label class="mdl-textfield__label" for="{{ form.title.id }}">{{ form.title.label }}</label>
+        </div>
+
+
+        {% if form.title.errors %}
+        <ul>
+            {% for error in form.title.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="{{form.author.id}}" name="{{form.author.id}}">
+            <label class="mdl-textfield__label" for="{{ form.author.id }}">{{ form.author.label }}</label>
+        </div>
+        {% if form.author.errors %}
+        <ul>
+            {% for error in form.author.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div>
+        <!-- Accent-colored raised button -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit">
+            {{form.submit.label}}
+        </button>
+    </div>
+</form>
+{% endblock %}
