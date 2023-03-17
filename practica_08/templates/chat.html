@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat{% endblock %}
+{% block scripts %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        $('#connect').click(function () {
+            socket.emit('connect_request', {});
+            $('#chat').removeClass('hidden');
+        });
+        $('form').submit(function (event) {
+            socket.emit('message', { 'data': $('#message_input').val() });
+            $('#message_input').val('');
+            event.preventDefault();
+        });
+        socket.on('message', function (msg) {
+            $('#messages').append($('<p>').text(msg.data));
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Chat</h1>
+
+<button id="connect">Conectar</button>
+<div id="chat" class="hidden">
+    <div id="messages"></div>
+    <form>
+        <input id="message_input" type="text">
+        <input id="send" type="submit" value="Enviar">
+    </form>
+</div>
+{% endblock %}

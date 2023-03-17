@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <title>{% block title %}{% endblock %}</title>
+  {% block scripts %}
+  
+  {% endblock scripts %}
 </head>
 
 <body>
@@ -27,6 +30,7 @@
           <a class="mdl-navigation__link" href="{{ url_for('index') }}">Inicio</a>
           <a class="mdl-navigation__link" href="{{ url_for('create_book') }}">Crear libro</a>
           <a class="mdl-navigation__link" href="{{ url_for('list_books') }}">Lista de libros</a>
+          <a class="mdl-navigation__link" href="{{ url_for('chat') }}">Chat de ayuda</a>
           <span class="mx-1">Bienvenido, {{ current_user.id }}!</span>
           <a class="text-white" href="{{ url_for('logout') }}">Cerrar sesión</a>
           {% else %}

@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from models import users
 from forms import BookForm, LoginForm
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'LLAVE_SUPER_SECRETA'
@@ -10,6 +11,7 @@ app.config['SECRET_KEY'] = 'LLAVE_SUPER_SECRETA'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'index'
+socketio = SocketIO(app)
 
 books = []
 
@@ -59,6 +61,21 @@ def create_book():
 @login_required
 def list_books():
     return render_template('list_books.html', books=books)
+
+@app.route('/chat')
+def chat():
+    return render_template('chat.html')
+
+@socketio.on('connect_request')
+def handle_connect_request(json):
+    print('Se ha conectado un usuario.')
+
+
+@socketio.on('message')
+def handle_message(json):
+    print('Recibido mensaje: ' + json['data'])
+    emit('message', {'data': json['data']}, broadcast=True)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
