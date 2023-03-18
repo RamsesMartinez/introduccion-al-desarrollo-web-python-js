@@ -33,6 +33,9 @@ def index():
         user = users.get(username)
         if user and user.password == password:
             login_user(user)
+            # Lógica para capturar parametro "next"
+            # if next existe
+            #    redirect a ese next
             return redirect(url_for('list_books'))
     return render_template('login.html', form=form)
 
